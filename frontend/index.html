@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TravelX - Explore The World</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container nav">
+
+    <h1 class="logo">TravelX</h1>
+
+    <nav>
+      <ul>
+
+        <li><a href="#home">Home</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+
+        <!-- NOT LOGGED IN -->
+        <li id="navLogin">
+          <button class="btn" onclick="openModal('loginModal')">
+            Sign In
+          </button>
+        </li>
+
+        <li id="navRegister">
+          <button class="btn" onclick="openModal('registerModal')">
+            Sign Up
+          </button>
+        </li>
+
+        <!-- LOGGED IN -->
+        <li id="navUser" style="display:none;">
+          <button class="btn" onclick="openDashboard()">
+            Dashboard
+          </button>
+        </li>
+
+        <li id="navProfile" style="display:none;">
+          <button class="btn" onclick="openModal('profileModal')">
+            Profile
+          </button>
+        </li>
+
+        <li id="navLogout" style="display:none;">
+          <button class="btn" style="background:red;" onclick="logout()">
+            Logout
+          </button>
+        </li>
+
+        <li>
+          <button class="btn" onclick="openBooking()">
+            Book Now
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="overlay">
+
+    <h2>Explore The World With Us</h2>
+
+    <p>Discover amazing destinations and create unforgettable memories</p>
+
+    <button class="hero-btn" onclick="openBooking()">
+      Start Your Journey
+    </button>
+
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="section container" id="destinations">
+
+  <h2 style="color:blue;">Popular Destinations</h2>
+
+  <div class="grid">
+
+    <!-- PARIS -->
+    <div class="card">
+      <img src="/frontend/pic/paris.jpg">
+
+      <div class="card-content">
+        <h3>Paris</h3>
+        <p>$1200</p>
+
+        <button onclick="openDetails(
+          'Paris',
+          'Famous for its romantic atmosphere and Eiffel Tower.'
+        )">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- DUBAI -->
+    <div class="card">
+      <img src="/frontend/pic/dubai.jpg">
+
+      <div class="card-content">
+        <h3>Dubai</h3>
+        <p>$900</p>
+
+        <button onclick="openDetails(
+          'Dubai',
+          'Luxury city with skyscrapers and deserts.'
+        )">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- TOKYO -->
+    <div class="card">
+      <img src="/frontend/pic/tokoyo.jpg">
+
+      <div class="card-content">
+        <h3>Tokyo</h3>
+        <p>$700</p>
+
+        <button onclick="openDetails(
+          'Tokyo',
+          'Modern technology mixed with culture.'
+        )">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- NEW YORK -->
+    <div class="card">
+      <img src="/frontend/pic/newyark.jpg">
+
+      <div class="card-content">
+        <h3>New York</h3>
+        <p>$500</p>
+
+        <button onclick="openDetails(
+          'New York',
+          'Iconic skyline and modern lifestyle.'
+        )">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- BARCELONA -->
+    <div class="card">
+      <img src="/frontend/pic/barcelona.jpg">
+
+      <div class="card-content">
+        <h3>Barcelona</h3>
+        <p>$800</p>
+
+        <button onclick="openDetails(
+          'Barcelona',
+          'Gaudi architecture and lively culture.'
+        )">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- CAPE TOWN -->
+    <div class="card">
+      <img src="/frontend/pic/capetown.jpg">
+
+      <div class="card-content">
+        <h3>Cape Town</h3>
+        <p>$600</p>
+
+        <button onclick="openDetails(
+          'Cape Town',
+          'Beautiful coastal views and mountains.'
+        )">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- PRAGUE -->
+    <div class="card">
+      <img src="/frontend/pic/pangue.jpg">
+
+      <div class="card-content">
+        <h3>Prague</h3>
+        <p>$1700</p>
+
+        <button onclick="openDetails(
+          'Prague',
+          'Historic city with fairy tale architecture.'
+        )">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- SYDNEY -->
+    <div class="card">
+      <img src="/frontend/pic/synjah.jpg">
+
+      <div class="card-content">
+        <h3>Sydney</h3>
+        <p>$2000</p>
+
+        <button onclick="openDetails(
+          'Sydney',
+          'Opera House and beautiful harbor.'
+        )">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- Bora Bora -->
+    <div class="card">
+      <img src="/frontend/pic/bora.jfif">
+
+      <div class="card-content">
+        <h3>Bora Bora</h3>
+        <p>$2500</p>
+
+        <button onclick="openDetails(
+          'Bora Bora',
+          'Turquoise lagoons and luxury island resorts.'
+        )">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- Grand Canyon -->
+    <div class="card">
+      <img src="/frontend/pic/canyon.jfif">
+
+      <div class="card-content">
+        <h3>Grand Canyon</h3>
+        <p>$2700</p>
+
+        <button onclick="openDetails(
+          'Grand Canyon',
+          'Massive natural canyon with dramatic rock formations.'
+        )">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- Santorini -->
+    <div class="card">
+      <img src="/frontend/pic/santorini.jpg">
+
+      <div class="card-content">
+        <h3>Santorini</h3>
+        <p>$3000</p>
+
+        <button onclick="openDetails(
+          'Santorini',
+          'White buildings, blue domes, and stunning sunset views over the Aegean Sea.'
+        )">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- ISTANBUL -->
+    <div class="card">
+      <img src="/frontend/pic/istambol.jpg">
+
+      <div class="card-content">
+        <h3>Istanbul</h3>
+        <p>$1900</p>
+
+        <button onclick="openDetails(
+          'Istanbul',
+          'City connecting Europe and Asia.'
+        )">
+          View Details
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PACKAGES -->
+<section class="section grey" id="packages">
+
+  <div class="container">
+
+    <h2 style="color:blue;">Travel Packages</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <img src="/frontend/pic/luxury.jpg">
+
+        <div class="card-content">
+          <h3>Luxury Tour</h3>
+
+          <p>
+            Luxury Tour offers a premium travel experience with 
+            luxury hotels, comfortable transportation, and 
+            world-class services. Explore beautiful destinations 
+            in style while enjoying comfort, relaxation, and 
+            unforgettable memories.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="/frontend/pic/adventure.jpg">
+
+        <div class="card-content">
+          <h3>Adventure Trip</h3>
+
+          <p>
+            Adventure Trip offers exciting travel experiences 
+            for people who love thrill and exploration. Enjoy 
+            hiking, camping, and outdoor adventures while 
+            discovering beautiful places and creating unforgettable 
+            memories.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="/frontend/pic/family_package.jpg">
+
+        <div class="card-content">
+          <h3>Family Package</h3>
+
+          <p>
+            Family Package is designed for safe, comfortable, and 
+            enjoyable trips for all age groups. It includes 
+            family-friendly hotels, convenient transport, and fun 
+            activities that everyone can enjoy together. It is perfect 
+            for creating happy and memorable moments with your loved 
+            ones.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SERVICES -->
+<section class="section container"
+  id="services"
+  style="background-color:rgb(215,246,250);">
+
+  <h2 style="color:blue;">Our Services</h2>
+
+  <div class="grid">
+
+    <div class="card simple">
+      <h3>Flight Booking</h3>
+
+      <p>
+        Flight Booking makes travel easy and convenient by allowing 
+        you to reserve seats on domestic and international flights 
+        in advance. It helps you choose from different airlines, 
+        prices, and schedules according to your needs. With quick and 
+        simple booking, you can plan your journey without any stress.
+      </p>
+    </div>
+
+    <div class="card simple">
+      <h3>Hotel Reservation</h3>
+
+      <p>
+        Hotel Reservation helps travelers secure comfortable and 
+        safe accommodation before reaching their destination. It 
+        offers a variety of options from budget stays to luxury 
+        hotels based on your preference. With easy booking, you 
+        can enjoy a stress-free and well-planned trip.
+      </p>
+    </div>
+
+    <div class="card simple">
+      <h3>Tour Guide</h3>
+
+      <p>
+        Tour Guide service provides experienced and professional 
+        guides to make your journey more informative and enjoyable. 
+        They help you explore famous attractions, understand local 
+        culture, and discover hidden gems. With a knowledgeable guide, 
+        your travel experience becomes safer, easier, and more memorable.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="section grey" id="about">
+
+  <h2 style="color:blue;">About Us</h2>
+
+  <div class="container">
+
+    <p>
+      TravelX is a modern travel agency dedicated to making your 
+      journeys safe, comfortable, and unforgettable. We offer a 
+      wide range of services including flight booking, hotel 
+      reservation, tour packages, and guided tours to help you 
+      explore the world with ease. Our goal is to provide reliable, 
+      affordable, and high-quality travel experiences so every trip 
+      becomes a memorable adventure.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+
+<!-- REVIEWS SECTION -->
+<section class="section grey" id="reviews">
+  <div class="container">
+
+    <h2 style="color:blue;">What Travelers Say</h2>
+
+    <div id="latestReviews" class="grid" style="margin-top:20px;">
+      <p>Loading reviews...</p>
+    </div>
+
+    <div style="margin-top:30px;">
+      <button class="btn" onclick="openReviewModal()">
+        ✍️ Write a Review
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section class="section container" id="contact">
+
+  <h2 style="color:blue;">Contact Us</h2>
+
+  <p><strong>Email:</strong> info@travelx.com</p>
+
+  <p><strong>Phone:</strong> +92 300 0000000</p>
+
+</section>
+
+
+
+<!-- DETAILS MODAL -->
+<div id="detailsModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close"
+      onclick="closeModal('detailsModal')">
+      &times;
+    </span>
+
+    <h2 id="detailTitle"></h2>
+
+    <p id="detailText"></p>
+
+    <button onclick="openBooking()">
+      Book Now
+    </button>
+
+  </div>
+
+</div>
+
+<!-- BOOKING MODAL -->
+<div id="bookingModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close"
+      onclick="closeModal('bookingModal')">
+      &times;
+    </span>
+
+    <h2 style="color:blue;">Book Your Trip</h2>
+
+    <form onsubmit="submitForm(event)">
+
+      <input type="text" placeholder="Full Name" required>
+
+      <input type="email" placeholder="Email" required>
+
+      <input type="tel" placeholder="Phone" required>
+
+      <input type="date" required>
+
+      <select required>
+        <option value="">Select Destination</option>
+
+        <option>Paris</option>
+        <option>Dubai</option>
+        <option>Tokyo</option>
+        <option>New York</option>
+        <option>Barcelona</option>
+        <option>Cape Town</option>
+        <option>Prague</option>
+        <option>Sydney</option>
+        <option>Bora Bora</option>
+        <option>Grand Canyon</option>
+        <option>Santorini</option>
+        <option>Istanbul</option>
+      </select>
+
+      <select required>
+        <option value="">Select Flight</option>
+
+        <option>Qatar Airways</option>
+        <option>Singapore Airlines</option>
+        <option>Emirates</option>
+        <option>Turkish Airlines</option>
+        <option>Cathay Pacific</option>
+        <option>All Nippon Airways</option>
+        <option>Korean Air</option>
+      </select>
+
+      <select required>
+        <option value="">Select Hotel</option>
+
+        <option>Burj Al Arab</option>
+        <option>The Plaza Hotel</option>
+        <option>Marina Bay Sands</option>
+        <option>The Ritz Paris</option>
+        <option>Atlantis The Royal</option>
+        <option>Rosewood Hong Kong</option>
+        <option>Cheval Blanc Paris</option>
+      </select>
+
+      <button type="submit">
+        Confirm Booking
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- REGISTER MODAL -->
+<div id="registerModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close"
+      onclick="closeModal('registerModal')">
+      &times;
+    </span>
+
+    <h2 style="color:blue;">Create Account</h2>
+
+    <input type="text"
+      id="regName"
+      placeholder="Full Name">
+
+    <input type="email"
+      id="regEmail"
+      placeholder="Email">
+
+    <input type="password"
+      id="regPass"
+      placeholder="Password">
+
+    <button onclick="register()">
+      Sign Up
+    </button>
+
+    <p style="margin-top:10px;">
+      Already have an account?
+
+      <a href="#"
+        onclick="switchModal(
+          'registerModal',
+          'loginModal'
+        )">
+        Sign In
+      </a>
+    </p>
+
+    <p id="regMsg" style="color:red;"></p>
+
+  </div>
+
+</div>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close"
+      onclick="closeModal('loginModal')">
+      &times;
+    </span>
+
+    <h2 style="color:blue;">Sign In</h2>
+
+    <input type="email"
+      id="loginEmail"
+      placeholder="Email">
+
+    <input type="password"
+      id="loginPass"
+      placeholder="Password">
+
+    <button onclick="login()">
+      Sign In
+    </button>
+
+    <p style="margin-top:10px;">
+      No account?
+
+      <a href="#"
+        onclick="switchModal(
+          'loginModal',
+          'registerModal'
+        )">
+        Sign Up
+      </a>
+    </p>
+
+    <p id="loginMsg" style="color:red;"></p>
+
+  </div>
+
+</div>
+
+<!-- PROFILE MODAL -->
+<div id="profileModal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close"
+      onclick="closeModal('profileModal')">
+      &times;
+    </span>
+
+    <h2 style="color:blue;">My Profile</h2>
+
+    <input type="text"
+      id="profileName"
+      placeholder="Name">
+
+    <input type="email"
+      id="profileEmail"
+      placeholder="Email">
+
+    <input type="password"
+      id="profilePass"
+      placeholder="New Password">
+
+    <button onclick="updateProfile()">
+      Update Profile
+    </button>
+
+    <button
+      onclick="deleteAccount()"
+      style="background:red;margin-top:10px;">
+      Delete Account
+    </button>
+
+  </div>
+
+</div>
+
+<!-- DASHBOARD MODAL -->
+<!-- DASHBOARD MODAL -->
+<div id="dashboardModal" class="modal">
+  <div class="modal-content" style="width:420px;max-height:85vh;overflow-y:auto;">
+
+    <span class="close" onclick="closeModal('dashboardModal')">&times;</span>
+
+    <h2 style="color:blue;">My Dashboard</h2>
+
+    <p id="dashUserName" style="font-weight:bold;margin-bottom:12px;"></p>
+
+    <!-- Tabs -->
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+      <button class="dash-tab" data-tab="bookings"
+        onclick="loadTab('bookings')"
+        style="background:orange;color:white;border:none;padding:8px 14px;border-radius:12px;cursor:pointer;font-weight:bold;">
+        ✈️ Bookings
+      </button>
+      <button class="dash-tab" data-tab="history"
+        onclick="loadTab('history')"
+        style="background:#0a1f44;color:white;border:none;padding:8px 14px;border-radius:12px;cursor:pointer;font-weight:bold;">
+        📋 History
+      </button>
+      <button class="dash-tab" data-tab="reviews"
+        onclick="loadTab('reviews')"
+        style="background:#0a1f44;color:white;border:none;padding:8px 14px;border-radius:12px;cursor:pointer;font-weight:bold;">
+        ⭐ Reviews
+      </button>
+    </div>
+
+    <div id="bookingsList"></div>
+
+  </div>
+</div>
+
+<!-- EDIT BOOKING MODAL -->
+<div id="editBookingModal" class="modal">
+
+  <div class="modal-content" style="width:380px;">
+
+    <span class="close" onclick="closeModal('editBookingModal')">&times;</span>
+
+    <h2 style="color:blue;">Edit Booking</h2>
+
+    <input type="hidden" id="editBookingId">
+
+    <input type="tel"
+      id="editPhone"
+      placeholder="Phone Number">
+
+    <input type="date"
+      id="editDate">
+
+    <select id="editDestination">
+      <option value="">Select Destination</option>
+      <option>Paris</option>
+      <option>Dubai</option>
+      <option>Tokyo</option>
+      <option>New York</option>
+      <option>Barcelona</option>
+      <option>Cape Town</option>
+      <option>Prague</option>
+      <option>Sydney</option>
+      <option>Bora Bora</option>
+      <option>Grand Canyon</option>
+      <option>Santorini</option>
+      <option>Istanbul</option>
+    </select>
+
+    <select id="editFlight">
+      <option value="">Select Flight</option>
+      <option>Qatar Airways</option>
+      <option>Singapore Airlines</option>
+      <option>Emirates</option>
+      <option>Turkish Airlines</option>
+      <option>Cathay Pacific</option>
+      <option>All Nippon Airways</option>
+      <option>Korean Air</option>
+    </select>
+
+    <select id="editHotel">
+      <option value="">Select Hotel</option>
+      <option>Burj Al Arab</option>
+      <option>The Plaza Hotel</option>
+      <option>Marina Bay Sands</option>
+      <option>The Ritz Paris</option>
+      <option>Atlantis The Royal</option>
+      <option>Rosewood Hong Kong</option>
+      <option>Cheval Blanc Paris</option>
+    </select>
+
+    <button onclick="submitEditBooking()">
+      Save Changes
+    </button>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+<!-- REVIEW MODAL -->
+<div id="reviewModal" class="modal">
+  <div class="modal-content">
+
+    <span class="close" onclick="closeModal('reviewModal')">&times;</span>
+
+    <h2 style="color:blue;">Write a Review</h2>
+
+    <select id="reviewDestination">
+      <option value="">Select Destination</option>
+      <option>Paris</option>
+      <option>Dubai</option>
+      <option>Tokyo</option>
+      <option>New York</option>
+      <option>Barcelona</option>
+      <option>Cape Town</option>
+      <option>Prague</option>
+      <option>Sydney</option>
+      <option>Bora Bora</option>
+      <option>Grand Canyon</option>
+      <option>Santorini</option>
+      <option>Istanbul</option>
+    </select>
+
+    <!-- Star rating -->
+    <input type="hidden" id="reviewRating" value="5">
+    <div style="margin:10px 0;font-size:28px;">
+      <span class="star-btn" onclick="setRating(1)" style="cursor:pointer;color:orange;">★</span>
+      <span class="star-btn" onclick="setRating(2)" style="cursor:pointer;color:orange;">★</span>
+      <span class="star-btn" onclick="setRating(3)" style="cursor:pointer;color:orange;">★</span>
+      <span class="star-btn" onclick="setRating(4)" style="cursor:pointer;color:orange;">★</span>
+      <span class="star-btn" onclick="setRating(5)" style="cursor:pointer;color:orange;">★</span>
+    </div>
+
+    <textarea
+      id="reviewComment"
+      placeholder="Share your experience..."
+      style="width:100%;height:100px;padding:10px;border:1px solid #ccc;border-radius:8px;font-size:14px;resize:vertical;"
+    ></textarea>
+
+    <button onclick="submitReview()">Submit Review</button>
+
+    <p id="reviewMsg" style="color:red;margin-top:8px;"></p>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 TravelX</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
