@@ -1,83 +1,43 @@
-// Import jsonwebtoken package
-// Used for creating and verifying JWT tokens
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
-// Secret key used to sign and verify tokens
-// IMPORTANT:
-// In real projects, store this in .env file
-const SECRET = "travelx_secret_key"
+const SECRET = process.env.JWT_SECRET || "dev-secret";
 
-// ─────────────────────────────────────────────
-// AUTHENTICATION MIDDLEWARE
-// ─────────────────────────────────────────────
-
-// Middleware function
-// Runs before protected routes
-// Example:
-// router.get("/profile", auth, controller.profile)
-
-module.exports = function (req, res, next) {
-
+// ── Auth middleware ──
+function auth(req, res, next) {
   try {
-
-    // Get token from request headers
-    // Example header:
-    // Authorization: Bearer eyhdbshd...
-
-    let token = req.headers["authorization"]
-
-    // ✔ Check if token starts with "Bearer "
-    // Because token usually comes like:
-    // "Bearer xxxxxxxxx"
-
-    if (token && token.startsWith("Bearer ")) {
-
-      // Split string into array:
-      // ["Bearer", "token"]
-
-      // Take only the token part
-      token = token.split(" ")[1]
+    const authHeader = req.headers["authorization"];
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ message: "No token. Access denied." });
     }
-
-    // ✔ If token does not exist
-    // User is not logged in
-
+    const token = authHeader.split(" ")[1];
     if (!token) {
-
-      return res.status(401).json({
-
-        // 401 = Unauthorized
-        message: "No token. Access denied."
-      })
+      return res.status(401).json({ message: "No token. Access denied." });
     }
-
-    // ✔ Verify token using secret key
-    // If token is valid:
-    // jwt.verify returns decoded user data
-
-    const decoded = jwt.verify(token, SECRET)
-
-    // Attach decoded user data to request object
-    // So other routes can access logged-in user
-
-    // Example:
-    // req.user.id
-    // req.user.email
-
-    req.user = decoded
-
-    // Move to next middleware or controller
-    next()
-
-  } catch (error) {
-
-    // If token is invalid or expired
-    // Send unauthorized response
-
-    return res.status(401).json({
-
-      // Invalid token message
-      message: "Invalid or expired token."
-    })
+    const decoded = jwt.verify(token, SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    if (err.name === "TokenExpiredError") {
+      return res.status(401).json({ message: "Session expired. Please log in again." });
+    }
+    if (err.name === "JsonWebTokenError") {
+      return res.status(401).json({ message: "Invalid token. Please log in again." });
+    }
+    return res.status(401).json({ message: "Authentication failed." });
   }
 }
+
+// ── Admin middleware (runs after auth) ──
+function adminAuth(req, res, next) {
+  auth(req, res, () => {
+    if (!req.user || req.user.role !== "admin") {
+      return res.status(403).json({ message: "Access denied. Admins only." });
+    }
+    next();
+  });
+}
+
+module.exports = {
+  auth,
+  adminAuth
+};
