@@ -1,0 +1,505 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f8fbff;
+    color: #14213d;
+    line-height: 1.7;
+}
+
+.container {
+    width: min(92%, 1200px);
+    margin: auto;
+}
+
+h2 {
+    padding: 20px 0;
+    font-size: 32px;
+    color: #0a1f44;
+}
+
+header {
+    background: linear-gradient(135deg, #0a1f44, #183b7a);
+    color: white;
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    color: #ffd166;
+}
+
+.btn,
+.hero-btn,
+.card button,
+form button,
+.modal-content button {
+    background: linear-gradient(135deg, #ffb703, #fb8500);
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 700;
+}
+
+.btn:hover,
+.hero-btn:hover,
+.card button:hover,
+form button:hover,
+.modal-content button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(251,133,0,0.25);
+}
+
+.hero {
+    min-height: 92vh;
+    background:
+        linear-gradient(90deg, rgba(10,31,68,0.72), rgba(24,59,122,0.45)),
+        url('/frontend/pic/home .jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay {
+    text-align: center;
+    color: white;
+    padding: 24px;
+    max-width: 760px;
+}
+
+.overlay h2 {
+    font-size: 56px;
+    color: white;
+    padding: 0 0 12px;
+}
+
+.overlay p {
+    font-size: 20px;
+    margin-top: 10px;
+    color: #f3f7ff;
+}
+
+.section {
+    padding: 70px 0;
+    text-align: center;
+}
+
+.grey {
+    background: linear-gradient(180deg, #f4f8ff, #eef4ff);
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    justify-content: center;
+}
+
+.card {
+    background: white;
+    flex: 1;
+    min-width: 260px;
+    max-width: 340px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(20,33,61,0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 18px;
+}
+
+.card-content h3 {
+    margin-bottom: 10px;
+    color: #0a1f44;
+}
+
+.card-content p {
+    margin-bottom: 12px;
+    color: #5f6c82;
+}
+
+.card button {
+    background: #0a1f44;
+    border-radius: 999px;
+}
+
+.card button:hover {
+    background: #fb8500;
+}
+
+.simple {
+    padding: 24px;
+}
+
+.stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.stat-box {
+    background: white;
+    border-radius: 16px;
+    padding: 18px 24px;
+    min-width: 180px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+.stat-box strong {
+    display: block;
+    font-size: 26px;
+    color: #0a1f44;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    resize: none;
+}
+
+/* Also support showing modals by toggling an 'open' class */
+.modal.open {
+    display: flex;
+}
+
+.modal-content {
+    
+    background: white;
+    padding: 28px;
+    width: min(92%, 420px);
+    border-radius: 24px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.16);
+}
+
+.close {
+    cursor: pointer;
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0a1f44;
+}
+
+/* AFTER */
+form input:not([type="radio"]):not([type="checkbox"]),
+form select,
+.modal-content input:not([type="radio"]):not([type="checkbox"]),
+.modal-content select,
+.modal-content textarea {
+    width: 300px;
+    margin: 8px 0;
+    padding: 10px;
+    border: 1px solid #d3def0;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+form button,
+.modal-content button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px 16px;
+}
+
+.booking-card {
+    background: #f7fbff;
+    padding: 15px;
+    border-radius: 14px;
+    margin-bottom: 15px;
+    text-align: left;
+    border: 1px solid #dfeaf8;
+}
+
+.booking-card button {
+    margin-top: 10px;
+    margin-right: 8px;
+    width: auto;
+    padding: 8px 12px;
+}
+
+footer {
+    background: #0a1f44;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    margin-top: 30px;
+}
+
+@media (max-width: 900px) {
+    .nav {
+        flex-direction: column;
+    }
+
+    .nav ul {
+        margin-top: 15px;
+        justify-content: center;
+    }
+
+    .overlay h2 {
+        font-size: 36px;
+    }
+
+    .overlay p {
+        font-size: 18px;
+    }
+
+    .card {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .modal-content {
+        width: 90%;
+    }
+
+    .overlay h2 {
+        font-size: 28px;
+    }
+
+    .overlay p {
+        font-size: 16px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
+
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+
+body { background:#f0f4f8; color:#222; }
+
+    /* ── HEADER ── */
+header {
+    background:#0a1f44;
+    color:white;
+    padding:16px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky; top:0; z-index:100;
+}
+header h1 { font-size:24px; }
+header span { font-size:14px; opacity:.7; }
+#logoutBtn {
+    background:red; color:white; border:none;
+    padding:8px 18px; border-radius:12px;
+    cursor:pointer; font-weight:bold;
+}
+
+    /* ── LAYOUT ── */
+.layout { display:flex; min-height:100vh; }
+
+    /* ── SIDEBAR ── */
+.sidebar {
+    width:220px; background:#0a1f44; color:white;
+    padding:30px 0; flex-shrink:0;
+}
+.sidebar-item {
+    padding:14px 28px; cursor:pointer;
+    font-size:15px; transition:.2s;
+    border-left:4px solid transparent;
+}
+.sidebar-item:hover { background:rgba(255,255,255,.08); }
+.sidebar-item.active {
+    background:rgba(255,165,0,.15);
+    border-left-color:orange;
+    color:orange; font-weight:bold;
+}
+.sidebar-icon { margin-right:10px; }
+
+    /* ── MAIN ── */
+.main { flex:1; padding:30px; }
+
+    /* ── STATS BAR ── */
+.stats-bar {
+    display:flex; gap:20px; flex-wrap:wrap; margin-bottom:30px;
+}
+.stat-card {
+    background:white; border-radius:14px;
+    padding:20px 28px; flex:1; min-width:150px;
+    box-shadow:0 2px 10px rgba(0,0,0,.07);
+    border-top:4px solid orange;
+}
+.stat-card .num { font-size:32px; font-weight:bold; color:#0a1f44; }
+.stat-card .label { font-size:13px; color:#777; margin-top:4px; }
+
+    /* ── PANELS ── */
+.panel { display:none; }
+.panel.active { display:block; }
+
+.panel-header {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:20px;
+}
+.panel-header h2 { font-size:22px; color:#0a1f44; }
+.add-btn {
+    background:orange; color:white; border:none;
+    padding:10px 22px; border-radius:12px;
+    cursor:pointer; font-weight:bold; font-size:14px;
+    transition:.2s;
+}
+.add-btn:hover { background:#e08800; transform:scale(1.04); }
+
+    /* ── TABLE ── */
+.table-wrap { background:white; border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.07); }
+table { width:100%; border-collapse:collapse; }
+thead { background:#0a1f44; color:white; }
+th { padding:14px 16px; text-align:left; font-size:13px; font-weight:600; }
+td { padding:13px 16px; font-size:14px; border-bottom:1px solid #f0f0f0; }
+tr:last-child td { border-bottom:none; }
+tr:hover td { background:#fffbf2; }
+
+.badge {
+    padding:3px 10px; border-radius:10px; font-size:12px; font-weight:bold;
+}
+.badge-star { background:#fff3cd; color:#856404; }
+.badge-dest { background:#d1ecf1; color:#0c5460; }
+
+    /* ── ACTION BUTTONS ── */
+.btn-edit {
+    background:#0a1f44; color:white; border:none;
+    padding:6px 14px; border-radius:8px; cursor:pointer;
+    font-size:13px; margin-right:6px; transition:.2s;
+}
+.btn-edit:hover { background:#1a3a6a; }
+.btn-del {
+    background:red; color:white; border:none;
+    padding:6px 14px; border-radius:8px; cursor:pointer;
+    font-size:13px; transition:.2s;
+}
+.btn-del:hover { background:#cc0000; }
+
+    /* ── MODAL ── */
+.modal-overlay {
+    display:none; position:fixed; inset:0;
+    background:rgba(0,0,0,.6); z-index:500;
+    justify-content:center; align-items:center;
+}
+.modal-overlay.open { display:flex; }
+.modal-box {
+    background:white; border-radius:18px; padding:30px;
+    width:420px; max-height:90vh; overflow-y:auto;
+    box-shadow:0 8px 40px rgba(0,0,0,.2);
+}
+.modal-box h3 { color:#0a1f44; margin-bottom:18px; font-size:20px; }
+.modal-box label { font-size:13px; color:#555; display:block; margin:12px 0 4px; }
+.modal-box input, .modal-box select {
+    width:100%; padding:11px 14px;
+    border:1px solid #ddd; border-radius:8px; font-size:14px;
+}
+.modal-box input:focus, .modal-box select:focus {
+    outline:none; border-color:orange; box-shadow:0 0 0 2px rgba(255,165,0,.2);
+}
+.modal-actions { display:flex; gap:10px; margin-top:20px; }
+.btn-save {
+    flex:1; background:orange; color:white; border:none;
+    padding:12px; border-radius:10px; cursor:pointer;
+    font-weight:bold; font-size:15px;
+}
+.btn-cancel {
+    flex:1; background:#eee; color:#333; border:none;
+    padding:12px; border-radius:10px; cursor:pointer;
+    font-weight:bold; font-size:15px;
+}
+.msg { font-size:13px; margin-top:10px; color:red; }
+
+    /* ── EMPTY STATE ── */
+.empty { text-align:center; padding:50px; color:#aaa; font-size:15px; }
+
+    /* ── LOGIN SCREEN ── */
+#loginScreen {
+    position:fixed; inset:0; background:#0a1f44;
+    display:flex; justify-content:center; align-items:center; z-index:9999;
+}
+.login-box {
+    background:white; border-radius:20px;
+    padding:40px; width:360px; text-align:center;
+}
+.login-box h2 { color:#0a1f44; margin-bottom:6px; }
+.login-box p { color:#888; font-size:14px; margin-bottom:24px; }
+.login-box input {
+    width:100%; padding:13px; border:1px solid #ddd;
+    border-radius:10px; font-size:14px; margin-bottom:14px; display:block;
+}
+.login-box button {
+    width:100%; background:orange; color:white;
+    border:none; padding:13px; border-radius:12px;
+    font-size:16px; font-weight:bold; cursor:pointer;
+}
+#loginErr { color:red; font-size:13px; margin-top:10px; }
+
+    /* ── RESPONSIVE ── */
+@media (max-width:700px) {
+    .sidebar { width:60px; }
+    .sidebar-item span { display:none; }
+    .sidebar-icon { margin-right:0; font-size:20px; }
+    .main { padding:16px; }
+    .modal-box { width:95%; }
+}
