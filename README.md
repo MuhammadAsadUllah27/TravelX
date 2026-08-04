@@ -217,10 +217,6 @@ Open a Pull Request.
 ## 📄 License
 This project is licensed under the MIT License – see the LICENSE file for details.
 
-## 🙏 Acknowledgements
-Icons used: emoji icons (✈️, 🏨, 💳, etc.) from Unicode.
-
-Background images are placeholders; replace with your own assets.
 
 ---
 
