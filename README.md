@@ -120,83 +120,83 @@ All endpoints are prefixed with /api (except the root).
 Authentication is required for protected routes (pass Authorization: Bearer <token> header).
 
 Auth
-POST /auth/register – Register a new user (body: {name, email, password, role?, adminCode?})
+**POST /auth/register** – Register a new user (body: {name, email, password, role?, adminCode?})
 
-POST /auth/login – Login (body: {email, password})
+**POST /auth/login** – Login (body: {email, password})
 
-GET /auth/me – Get current user profile (requires token)
+**GET /auth/me** – Get current user profile (requires token)
 
-PUT /auth/me – Update profile (requires token)
+**PUT /auth/me** – Update profile (requires token)
 
-DELETE /auth/me – Delete account (requires token)
+**DELETE /auth/me** – Delete account (requires token)
 
-Users (profile management)
-PUT /users/update-profile – Update profile (requires token)
+**Users** (profile management)
+**PUT /users/update-profile** – Update profile (requires token)
 
-DELETE /users/delete-account – Delete account (requires token)
+**DELETE /users/delete-account** – Delete account (requires token)
 
-Bookings
-GET /bookings/my-bookings – Get user's active bookings
+**Bookings**
+**GET /bookings/my-bookings** – Get user's active bookings
 
-GET /bookings/my-history – Get user's booking history
+**GET /bookings/my-history** – Get user's booking history
 
-POST /bookings – Create a new booking (requires token)
+**POST /bookings** – Create a new booking (requires token)
 
-PUT /bookings/:id – Update a booking (requires token)
+**PUT /bookings/:id** – Update a booking (requires token)
 
-DELETE /bookings/:id – Cancel a booking (requires token)
+**DELETE /bookings/:id** – Cancel a booking (requires token)
 
-Reviews
-POST /reviews – Create a review (requires token)
+**Reviews**
+**POST /reviews** – Create a review (requires token)
 
-GET /reviews/my-reviews – Get user's reviews
+**GET /reviews/my-reviews** – Get user's reviews
 
-DELETE /reviews/:id – Delete a review (requires token)
+**DELETE /reviews/:id** – Delete a review (requires token)
 
-GET /reviews/latest – Get latest reviews (public)
+**GET /reviews/latest** – Get latest reviews (public)
 
-Payments
-POST /payments – Make a payment (requires token)
+**Payments**
+**POST /payments** – Make a payment (requires token)
 
-GET /payments/my-payments – Get user's payment history
+**GET /payments/my-payments** – Get user's payment history
 
-GET /payments/admin/all – Admin: get all payments
+**GET /payments/admin/all** – Admin: get all payments
 
-GET /payments/admin/summary – Admin: revenue summary
+**GET /payments/admin/summary** – Admin: revenue summary
 
-Admin (all require admin token)
-GET /admin/stats – System stats
+**Admin** (all require admin token)
+**GET /admin/stats** – System stats
 
-GET /admin/flights – Get all flights (public)
+**GET /admin/flights** – Get all flights (public)
 
-POST /admin/flights – Add flight
+**POST /admin/flights** – Add flight
 
-PUT /admin/flights/:id – Update flight
+**PUT /admin/flights/:id** – Update flight
 
-DELETE /admin/flights/:id – Delete flight
+**DELETE /admin/flights/:id** – Delete flight
 
-GET /admin/hotels – Get all hotels (public)
+**GET /admin/hotels** – Get all hotels (public)
 
-POST /admin/hotels – Add hotel
+**POST /admin/hotels** – Add hotel
 
-PUT /admin/hotels/:id – Update hotel
+**PUT /admin/hotels/:id** – Update hotel
 
-DELETE /admin/hotels/:id – Delete hotel
+**DELETE /admin/hotels/:id** – Delete hotel
 
-GET /admin/destinations – Get all destinations (public)
+**GET /admin/destinations** – Get all destinations (public)
 
-POST /admin/destinations – Add destination
+**POST /admin/destinations** – Add destination
 
-PUT /admin/destinations/:id – Update destination
+**PUT /admin/destinations/:id** – Update destination
 
-DELETE /admin/destinations/:id – Delete destination
+**DELETE /admin/destinations/:id** – Delete destination
 
-GET /admin/bookings – Get all bookings
+**GET /admin/bookings** – Get all bookings
 
-GET /admin/users – Get all users
+**GET /admin/users** – Get all users
 
-Stats (public)
-GET /stats – Aggregate booking stats by destination
+**Stats** (public)
+**GET /stats** – Aggregate booking stats by destination
 
 ## 🧪 Testing
 No automated tests are included yet. Manual testing can be performed using Postman or by using the frontend interface.
