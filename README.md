@@ -1,54 +1,46 @@
-# TravelX
-
-> A full-stack, modern travel agency web application designed to simplify trip planning, booking, and user experience through a clean interface and powerful backend.
-
----
-
-##  Overview
-
-**TravelX** is a complete travel management platform where users can explore destinations, book trips, manage bookings, and share reviews.
-It is built using **modern web technologies** with a scalable backend architecture.
-
----
+# TravelX – Travel Agency Web Application
+**TravelX** is a full‑stack travel booking platform that lets users explore destinations, book flights and hotels, make payments, and manage their trips.
+**Administrators** have a dedicated panel to manage inventory, users, bookings, and payments.
 
 ## ✨ Features
-
 ### 👤 User Features
+**Authentication** – Register, login, and logout with JWT‑based sessions.
 
-* User Registration & Login (Authentication System)
-* Browse travel destinations and packages
-* Book trips easily with a smooth workflow
-* View booking history
-* Cancel bookings
-* Add and manage reviews
+**Browse** – View destinations, flights, and hotels in a clean grid layout.
 
----
+**Book Trips** – Select destination, flight, hotel, travel date, and number of passengers (1‑10).
 
-### Admin / System Features
+**My Dashboard** – View active bookings, edit or cancel them, and see booking history.
 
-*Manage bookings
-* Manage users
-* Manage travel packages
-* Real-time updates via API
+**Account Statement** – See paid and outstanding amounts per booking, with an option to pay directly.
 
----
+**Payment** – Simulate payments via credit card, bank transfer, digital wallet, or cash. Payment status is tracked.
 
-## Tech Stack
+**Reviews** – Write and delete reviews; latest reviews appear on the homepage.
 
-### Frontend
+### 🔒 Admin Features
+**Admin Panel** – Dedicated interface with sidebar navigation.
 
-* HTML
-* CSS
-* JavaScript 
+**Dashboard** – Quick stats: total users, bookings, flights, hotels, and revenue.
 
-### Backend
+**Manage Flights** – Add, edit, or delete flights (airline, destination, departure, price, seats).
 
-* Node.js
-* Express.js
+**Manage Hotels** – Add, edit, or delete hotels (name, destination, stars, price per night).
 
-### Database
+**Manage Destinations** – Add, edit, or delete destinations (name, description, country, price, image URL).
 
-* MongoDB 
+**View All Bookings** – See all user bookings with status (pending/confirmed/cancelled).
+
+**View Users** – List registered users with their roles.
+
+**Payments Oversight** – View all payment transactions, filter by status, and see revenue summary.
+
+## 🧰 Tech Stack
+### Layer	Technologies
+**Backend**	–            Node.js, Express.js, MongoDB (Mongoose ODM).
+**Frontend** –	          HTML5, CSS3, Vanilla JavaScript (no frameworks).
+**Auth**	–               JSON Web Tokens (JWT), bcryptjs.
+**Other** –             	CORS, dotenv.
 
 ---
 
@@ -64,30 +56,37 @@ travelX/
 │
 ├── backend/                 # Backend
 │   ├── config/
-|   |   └── db
+|   |   └── db.js
 │   ├── controllers/
-|   |   ├── authController
-|   |   ├── bookingController
-|   |   ├── reviewController
-|   |   └── userController
+|   |   ├── authController.js
+|   |   ├── bookingController.js
+|   |   ├── reviewController.js
+|   |   ├── userController.js
+|   |   ├── paymentController.js
+|   |   └── statsController.js
 │   ├── middleware/
-|   |   └── auth
+|   |   └── auth.js
 │   ├── models/
-|   |   ├── booking
-|   |   ├── bookingHistory
-|   |   ├── cancelledBooking
-|   |   ├── review
-|   |   └── user
+|   |   ├── booking.js
+|   |   ├── bookingHistory.js
+|   |   ├── Payment.js
+|   |   ├── review.js
+|   |   ├── user.js
+|   |   ├── hotel.js
+|   |   ├── flight.js
+|   |   └── Destination.js
 │   └── routes
-|   |   ├── authRoutes
-|   |   ├── bookingRoutes
-|   |   ├── reviewRoutes
-|   |   ├── statsRoutes
-|   |   └── userRoutes
+|   |   ├── authRoutes.js
+|   |   ├── bookingRoutes.js
+|   |   ├── reviewRoutes.js
+|   |   ├── statsRoutes.js
+|   |   ├── adminRoutes.js
+|   |   ├── paymentRoutes.js
+|   |   └── userRoutes.js
 |   ├── package.json
 |   ├── package-lock.json
-|   ├──server
-|   └──stat
+|   ├──server.js
+|   └──stat.js
 ├── .gitignore
 └── README.md
 ```
@@ -110,42 +109,118 @@ cd travelX
 ```bash
 npm install
 ```
-
 ---
-
 ###  3. Run the Application
 
 ```bash
-npm start
+node server.js
 ```
-##  API Endpoints (Sample)
+## 🔌 API Endpoints
+All endpoints are prefixed with /api (except the root).
+Authentication is required for protected routes (pass Authorization: Bearer <token> header).
 
-| Method | Endpoint           | Description          |
-| ------ | ------------------ | -------------------- |
-| POST   | /api/auth/register | Register user        |
-| POST   | /api/auth/login    | Login user           |
-| GET    | /api/packages      | Get travel packages  |
-| POST   | /api/bookings      | Create booking       |
-| GET    | /api/bookings/my   | User booking history |
+Auth
+POST /auth/register – Register a new user (body: {name, email, password, role?, adminCode?})
 
----
+POST /auth/login – Login (body: {email, password})
 
-##  Security Features
+GET /auth/me – Get current user profile (requires token)
 
-* Password hashing using bcrypt
-* JWT-based authentication
-* Protected API routes
-* Environment variable protection
+PUT /auth/me – Update profile (requires token)
 
----
+DELETE /auth/me – Delete account (requires token)
 
-## Future Improvements
+Users (profile management)
+PUT /users/update-profile – Update profile (requires token)
 
-*  AI-based travel recommendations
-*  Payment gateway integration
-*  Mobile responsive optimization
-*  Multi-language support
-*  Admin analytics dashboard
+DELETE /users/delete-account – Delete account (requires token)
+
+Bookings
+GET /bookings/my-bookings – Get user's active bookings
+
+GET /bookings/my-history – Get user's booking history
+
+POST /bookings – Create a new booking (requires token)
+
+PUT /bookings/:id – Update a booking (requires token)
+
+DELETE /bookings/:id – Cancel a booking (requires token)
+
+Reviews
+POST /reviews – Create a review (requires token)
+
+GET /reviews/my-reviews – Get user's reviews
+
+DELETE /reviews/:id – Delete a review (requires token)
+
+GET /reviews/latest – Get latest reviews (public)
+
+Payments
+POST /payments – Make a payment (requires token)
+
+GET /payments/my-payments – Get user's payment history
+
+GET /payments/admin/all – Admin: get all payments
+
+GET /payments/admin/summary – Admin: revenue summary
+
+Admin (all require admin token)
+GET /admin/stats – System stats
+
+GET /admin/flights – Get all flights (public)
+
+POST /admin/flights – Add flight
+
+PUT /admin/flights/:id – Update flight
+
+DELETE /admin/flights/:id – Delete flight
+
+GET /admin/hotels – Get all hotels (public)
+
+POST /admin/hotels – Add hotel
+
+PUT /admin/hotels/:id – Update hotel
+
+DELETE /admin/hotels/:id – Delete hotel
+
+GET /admin/destinations – Get all destinations (public)
+
+POST /admin/destinations – Add destination
+
+PUT /admin/destinations/:id – Update destination
+
+DELETE /admin/destinations/:id – Delete destination
+
+GET /admin/bookings – Get all bookings
+
+GET /admin/users – Get all users
+
+Stats (public)
+GET /stats – Aggregate booking stats by destination
+
+## 🧪 Testing
+No automated tests are included yet. Manual testing can be performed using Postman or by using the frontend interface.
+
+## 🤝 Contributing
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+Fork the repository.
+
+Create a new branch (git checkout -b feature/your-feature).
+
+Commit your changes (git commit -am 'Add some feature').
+
+Push to the branch (git push origin feature/your-feature).
+
+Open a Pull Request.
+
+## 📄 License
+This project is licensed under the MIT License – see the LICENSE file for details.
+
+## 🙏 Acknowledgements
+Icons used: emoji icons (✈️, 🏨, 💳, etc.) from Unicode.
+
+Background images are placeholders; replace with your own assets.
 
 ---
 
@@ -156,10 +231,6 @@ npm start
  Future AI & Robotics Engineer
 
 ---
-
-## Vision
-
-This project is part of a larger goal to build intelligent systems and contribute to the future of **AI-powered smart applications** in industries like travel, robotics, and automation.
-
+## Happy Traveling! 🌍
 ---
 
