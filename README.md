@@ -2,6 +2,8 @@
 **TravelX** is a full‑stack travel booking platform that lets users explore destinations, book flights and hotels, make payments, and manage their trips.
 **Administrators** have a dedicated panel to manage inventory, users, bookings, and payments.
 
+https://www.linkedin.com/posts/activity-7490726260160237568-kbSj?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFhgKxIBxR7sQVTxPR68mvSQI8qkW6-WQP8
+
 ## ✨ Features
 ### 👤 User Features
 **Authentication** – Register, login, and logout with JWT‑based sessions.
